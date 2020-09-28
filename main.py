@@ -1,5 +1,7 @@
 from requests_html import HTMLSession
-from win10toast import ToastNotifier
+from src.win10toast.win10toast import ToastNotifier
+#call_back feature was not merged into the web10toast so i had to 
+#pull the version i needed .
 import time
 import webbrowser
 
@@ -20,7 +22,8 @@ def check_new():
 
     chapter_link = r.html.find('.col-6', first = True).absolute_links
     chapter_link = str(chapter_link)
-    chapter_link = chapter_link[2:60]
+    chapter_link = chapter_link[2:len(chapter_link)-2]
+    print(chapter_link)
    
     if chapter_no > prev_chapter :
        send_notif(chapter_info , chapter_link)
